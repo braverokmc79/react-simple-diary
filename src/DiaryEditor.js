@@ -3,13 +3,16 @@ import { useLayoutEffect, useRef, useState } from "react";
 
 const DiaryEditor = () => {
 
+    const authorInput = useRef();
+    const contentInput = useRef();
+
     const [state, setState] = useState({
         author: "",
         content: "",
         emotion: 3
     });
 
-    const inputRef = useRef();
+
 
 
     const handlerChangeState = (e) => {
@@ -19,14 +22,14 @@ const DiaryEditor = () => {
 
     const handleSubmit = (e) => {
         if (state.author.length < 1) {
-            alert("작성자는 최소 1글자 이상 입력해주세요.");
-            inputRef.current.focus();
+            //alert("작성자는 최소 1글자 이상 입력해주세요.");
+            authorInput.current.focus();
             return;
         }
 
         if (state.content.length < 5) {
-            alert("일기 본문은 최소 5글자 이상 입력해주세요.");
-            inputRef.current.focus();
+            //alert("일기 본문은 최소 5글자 이상 입력해주세요.");
+            contentInput.current.focus();
             return;
         }
         alert("저장 성공");
@@ -38,7 +41,7 @@ const DiaryEditor = () => {
         <div>
             <input
                 name="author"
-                ref={inputRef}
+                ref={authorInput}
                 value={state.author}
                 onChange={handlerChangeState}
             />
@@ -49,7 +52,7 @@ const DiaryEditor = () => {
         <div>
             <textarea
                 name="content"
-                ref={inputRef}
+                ref={contentInput}
                 value={state.content}
                 onChange={handlerChangeState}
             />
