@@ -1,8 +1,9 @@
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRef } from 'react';
+
 
 // const dummyList = [
 //   {
@@ -32,11 +33,23 @@ import { useRef } from 'react';
 
 // ]
 
+//http://jsonplaceholder.typicode.com/posts/1/comments
+
 function App() {
 
   const [data, setData] = useState([]);
 
   const dataId = useRef(0);
+
+  const getData = async () => {
+    const res = await fetch('http://jsonplaceholder.typicode.com/comments')
+      .then(data => data.json());
+    console.log(res);
+  }
+
+  useEffect(() => {
+    getData();
+  }, [])
 
   const onCreate = (author, content, emotion) => {
     const create_date = new Date().getTime();
@@ -66,6 +79,7 @@ function App() {
 
   return (
     <div className="App">
+
       <DiaryEditor onCreate={onCreate} />
       <DiaryList onEdit={onEdit} diaryList={data} onRemove={onRemove} />
     </div>
