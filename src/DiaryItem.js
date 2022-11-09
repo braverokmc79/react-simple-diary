@@ -1,8 +1,12 @@
 
-import { useState } from 'react';
-import { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+
 
 const DiaryItem = ({ id, author, content, emotion, create_date, onRemove, onEdit }) => {
+
+    useEffect(() => {
+        console.log(`${id} 번 째 아이템 랜더!`)
+    });
 
     const [isEdit, setIsEdit] = useState(false);
     const toggleIsEdit = () => setIsEdit(!isEdit);
@@ -36,7 +40,7 @@ const DiaryItem = ({ id, author, content, emotion, create_date, onRemove, onEdit
         <div className="DiaryItem">
             <div className="info">
                 <span>
-                    작성자 : {author} | 감정점수 : {emotion}
+                    {id} - 작성자 : {author} | 감정점수 : {emotion}
                 </span>
                 <br />
                 <span className="date"> {new Date(create_date).toLocaleString()}</span>
@@ -72,4 +76,4 @@ const DiaryItem = ({ id, author, content, emotion, create_date, onRemove, onEdit
     );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);

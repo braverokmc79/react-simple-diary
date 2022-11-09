@@ -1,3 +1,4 @@
+import React from 'react';
 import DiaryItem from "./DiaryItem";
 
 const DiaryList = ({ diaryList, onRemove, onEdit }) => {
@@ -9,9 +10,8 @@ const DiaryList = ({ diaryList, onRemove, onEdit }) => {
 
             <div>
                 {diaryList.map((it) => (
-                    <DiaryItem onEdit={onEdit} key={it.id} {...it} onRemove={onRemove} />
-                ))
-                }
+                    <DiaryItem key={it.id} {...it} onEdit={onEdit} onRemove={onRemove} />
+                ))}
             </div>
 
         </div>
