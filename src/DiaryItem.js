@@ -1,12 +1,8 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 
 const DiaryItem = ({ id, author, content, emotion, create_date, onRemove, onEdit }) => {
-
-    useEffect(() => {
-        console.log(`${id} 번 째 아이템 랜더!`)
-    });
 
     const [isEdit, setIsEdit] = useState(false);
     const toggleIsEdit = () => setIsEdit(!isEdit);
